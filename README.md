@@ -7,3 +7,4 @@
 3. Update the entity/config_entity
 4. Update the Component
 5. Update the Pipeline
+6. Update the main.py
