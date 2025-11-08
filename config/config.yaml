@@ -1,0 +1,13 @@
+
+
+#Here I will write all types of changeable varibales for each component like data ingestion , 
+
+artifacts_root : artifacts
+
+
+#Variables I need for data ingestions are specified here
+data_ingestion:
+  root_dir : artifacts/data_ingestion
+  source_URL : "https://github.com/arosha27/Datasets/raw/refs/heads/main/data.zip"
+  local_data_file : artifacts/data_ingestion/data.zip
+  unzip_dir: artifacts/data_ingestion
