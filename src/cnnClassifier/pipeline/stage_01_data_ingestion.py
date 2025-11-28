@@ -7,6 +7,7 @@ STAGE_NAME = "DATA Ingestion Stage"
 class DataIngestionTrainingPipeleine:
     def __init__(self):
         pass
+    
     def main(self):
         config = ConfigurationManager()
         data_ingestion_config = config.get_data_ingestion_config()
@@ -14,5 +15,3 @@ class DataIngestionTrainingPipeleine:
         data_ingestion.download_file()
         data_ingestion.extract_zip_file()
             
-
-    
