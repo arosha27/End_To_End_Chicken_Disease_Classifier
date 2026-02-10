@@ -5,6 +5,7 @@ import tensorflow as tf
 import keras
 from pathlib import Path
 from cnnClassifier.config.configuration import PrepareBaseModelConfig
+
 from keras import applications
 import urllib.request as request
 
@@ -39,7 +40,7 @@ class PrepareBaseModel:
                               outputs = prediction)  
         
         full_model.compile(optimizer = tf.keras.optimizers.SGD(learning_rate = learning_rate) ,
-                           loss = tf.keras.losses.CategoricalCrossentropy,
+                            loss = tf.keras.losses.CategoricalCrossentropy(),
                             metrics = ["accuracy"])
                             
         full_model.summary()
@@ -55,7 +56,7 @@ class PrepareBaseModel:
             learning_rate= self.config.params_learning_rate
               
         )
-        self.save_model(path = self.config.updated_base_model_path , model = self.model)
+        self.save_model(path = self.config.updated_base_model_path , model = self.full_model)
         
          
              
