@@ -4,7 +4,10 @@ logger.info("This is an info message")
 from cnnClassifier.pipeline.stage_01_data_ingestion import DataIngestionTrainingPipeleine
 from cnnClassifier.pipeline.stage_02_model_building import PrepareBaseModelTrainingPipeleine
 from cnnClassifier.pipeline.stage_03_model_trainer import ModelTrainingPipeline
+from cnnClassifier.pipeline.stage_04_evaluation import ModelEvaluationPipeline
 
+
+#-------------------DATA INGESTION STAGE-----------------------------
 STAGE_NAME = "DATA INGESTION STAGE"
 
 try:
@@ -21,7 +24,7 @@ except Exception as e:
 
 
 
-
+#-------------------PREPARE BASE MODEL STAGE-----------------------------
 STAGE_NAME = "Prepare Base Model"
 
 try:
@@ -39,6 +42,7 @@ except Exception as e:
 
 
 
+#-------------------MODEL TRAINING STAGE-----------------------------
 STAGE_NAME = "Model Training"
 try:
     logger.info(f"************************************")
@@ -47,6 +51,21 @@ try:
     model_trainer.main()
     logger.info(f"----------------------STAGE {STAGE_NAME} completed---------------------------")
     
+    
+except Exception as e:
+    logger.exception(e)
+    raise e
+
+
+#-------------------MODEL EVALUATION STAGE-----------------------------
+STAGE_NAME = "Evaluation"
+try:
+    
+    logger.info(f"---------------------------------")
+    logger.info(f"-----------------------STAGE {STAGE_NAME} started--------------------")
+    model_evaluator = ModelEvaluationPipeline()
+    model_evaluator.main()
+    logger.info(f"------------------------STAGE {STAGE_NAME} completed-----------------------")
     
 except Exception as e:
     logger.exception(e)

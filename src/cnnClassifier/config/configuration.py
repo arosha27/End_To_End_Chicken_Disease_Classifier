@@ -1,7 +1,10 @@
 import os
 from cnnClassifier.constants import *
 from cnnClassifier.utils.common import read_yaml , create_directories
-from cnnClassifier.entity.config_entity import (DataIngestionConfig , PrepareBaseModelConfig , TrainingConfig)
+from cnnClassifier.entity.config_entity import (DataIngestionConfig ,
+                                                PrepareBaseModelConfig ,
+                                                TrainingConfig , 
+                                                EvaluationConfig)
 
 class ConfigurationManager:
     def __init__(
@@ -15,7 +18,6 @@ class ConfigurationManager:
         create_directories([self.config.artifacts_root])
         
     # DATA INGESTION  
-        
     def get_data_ingestion_config(self)->DataIngestionConfig:
         
         config = self.config.data_ingestion
@@ -31,8 +33,9 @@ class ConfigurationManager:
         return data_ingestion_config
     
     
+    
+    
     # PREPARE BASE MODEL
-        
     def get_prepare_base_model_config(self) -> PrepareBaseModelConfig:
         config = self.config.prepare_base_model
         
@@ -50,6 +53,9 @@ class ConfigurationManager:
         )
 
         return prepare_base_model_config
+    
+    
+    
     
     # MODEL TRAINING
     def get_training_config(self) -> TrainingConfig:
@@ -73,6 +79,20 @@ class ConfigurationManager:
         )
 
         return training_config
+    
+    
+    # EVALUATION
+    def get_validation_config(self)-> EvaluationConfig:
+        eval_config = EvaluationConfig(
+            path_of_model= "artifacts/training/model.keras",
+            training_data= "artifacts/data_ingestion/Chicken-fecal-images",
+            all_params = self.params,
+            params_image_size= self.params.IMAGE_SIZE ,
+            params_batch_size= self.params.BATCH_SIZE
+            
+        )
+        return eval_config
+        
         
         
         
